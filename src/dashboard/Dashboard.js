@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { listReservations, listTables } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import { useLocation, useHistory } from "react-router";
@@ -25,7 +25,7 @@ function Dashboard({ date }) {
     date = search.replace("?date=", "");
   }
 
-  const loadDashboard =  useCallback(async () => {
+  const loadDashboard = useCallback(async () => {
     const abortController = new AbortController();
     try {
       const [reservationsResponse, tablesResponse] = await Promise.all([
@@ -38,7 +38,7 @@ function Dashboard({ date }) {
       console.log(err);
       setError(err);
     }
-  }, [date])
+  }, [date]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -75,11 +75,11 @@ function Dashboard({ date }) {
   return (
     <main>
       <h1>Dashboard</h1>
-      <div className="d-md-flex mb-3">
+      <div className="d-md-flex mb-2">
         <h4 className="mb-0">Reservations for date</h4>
       </div>
       <ErrorAlert error={error} />
-      <table className="table table-striped">
+      <table className="table table-striped table-bordered mb-1">
         <TableHeader
           headers={[
             "ID",
@@ -106,22 +106,34 @@ function Dashboard({ date }) {
             ))}
         </tbody>
       </table>
-      <div>
-        <button type="button" onClick={handlePrevious}>
+      <div className="mb-3">
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          onClick={handlePrevious}
+        >
           Previous
         </button>
-        <button type="button" onClick={handleToday}>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          onClick={handleToday}
+        >
           Today
         </button>
-        <button type="button" onClick={handleNext}>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          onClick={handleNext}
+        >
           Next
         </button>
       </div>
 
       <div>
-        <h4> Tables List </h4>
+        <h4 className="mt-2"> Tables List </h4>
         <ErrorAlert error={error} />
-        <table className="table table-striped">
+        <table className="table table-striped table-bordered">
           <TableHeader
             headers={[
               "ID",
@@ -139,7 +151,11 @@ function Dashboard({ date }) {
           />
           <tbody>
             {tables.map((table) => (
-              <TableInfo table={table} loadDashboard={loadDashboard} key={table.table_id} />
+              <TableInfo
+                table={table}
+                loadDashboard={loadDashboard}
+                key={table.table_id}
+              />
             ))}
           </tbody>
         </table>
