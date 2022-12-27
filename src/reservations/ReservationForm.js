@@ -5,8 +5,10 @@ function ReservationForm({ form, handleChange, handleSubmit }) {
   let history = useHistory();
 
   return (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="first_name">
+    <form onSubmit={handleSubmit} className="container">
+      <div className="row p-1">
+        <div className="col">
+          <label htmlFor="first_name" className="row p-3">
             First Name:
             <input
               id="first_name"
@@ -16,7 +18,9 @@ function ReservationForm({ form, handleChange, handleSubmit }) {
               value={form.first_name}
             />
           </label>
-          <label htmlFor="last_name">
+        </div>
+        <div className="col">
+          <label htmlFor="last_name" className="row p-3">
             Last Name:
             <input
               id="last_name"
@@ -26,7 +30,12 @@ function ReservationForm({ form, handleChange, handleSubmit }) {
               value={form.last_name}
             />
           </label>
-          <label htmlFor="mobile_number">
+        </div>
+      </div>
+
+      <div className="row p-1">
+        <div className="col">
+          <label htmlFor="mobile_number" className="row p-3">
             Mobile Number:
             <input
               id="mobile_number"
@@ -37,7 +46,24 @@ function ReservationForm({ form, handleChange, handleSubmit }) {
               value={form.mobile_number}
             />
           </label>
-          <label htmlFor="reservation_date">
+        </div>
+        <div className="col">
+          <label htmlFor="people" className="row p-3">
+            People:
+            <input
+              id="people"
+              type="number"
+              name="people"
+              onChange={(e) => handleChange(e, "people")}
+              value={form.people}
+            />
+          </label>
+        </div>
+      </div>
+
+      <div className="row p-1">
+        <div className="col">
+          <label htmlFor="reservation_date" className="row p-3">
             Reservation Date:
             <input
               id="reservation_date"
@@ -49,7 +75,9 @@ function ReservationForm({ form, handleChange, handleSubmit }) {
               value={form.reservation_date}
             />
           </label>
-          <label htmlFor="reservation_time">
+        </div>
+        <div className="col">
+          <label htmlFor="reservation_time" className="row p-3">
             Reservation Time:
             <input
               id="reservation_time"
@@ -61,21 +89,22 @@ function ReservationForm({ form, handleChange, handleSubmit }) {
               value={form.reservation_time}
             />
           </label>
-          <label htmlFor="people">
-            People:
-            <input
-              id="people"
-              type="number"
-              name="people"
-              onChange={(e) => handleChange(e, "people")}
-              value={form.people}
-            />
-          </label>
-          <button type="submit">Submit</button>
-          <button type="button" onClick={history.goBack}>
-            Cancel
-          </button>
-        </form>
+        </div>
+      </div>
+
+      <div className="p-2">
+        <button type="submit" className="btn btn-primary me-2">
+          Submit
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          onClick={history.goBack}
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
   );
 }
 

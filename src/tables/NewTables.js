@@ -9,7 +9,7 @@ function NewTables() {
   const initalForm = {
     table_name: "",
     capacity: "",
-    table_status: 'free'
+    table_status: "free",
   };
 
   const [form, setForm] = useState({ ...initalForm });
@@ -42,29 +42,45 @@ function NewTables() {
     <>
       <h1>Create A Table</h1>
       <ErrorAlert error={error} />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="table_name">
-          Table Name:
-          <input
-            id="table_name"
-            type="text"
-            name="table_name"
-            onChange={(e) => handleChange(e, "table_name")}
-            value={form.table_name}
-          />
-        </label>
-        <label htmlFor="capacity">
-          Capacity:
-          <input
-            id="capacity"
-            type="number"
-            name="capacity"
-            onChange={(e) => handleChange(e, "capacity")}
-            value={form.capacity}
-          />
-        </label>
-        <button type="submit">Submit</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
+      <form onSubmit={handleSubmit} className="container">
+        <div className="row p-1">
+          <div className="col">
+            <label htmlFor="table_name" className="row p-3">
+              Table Name:
+              <input
+                id="table_name"
+                type="text"
+                name="table_name"
+                onChange={(e) => handleChange(e, "table_name")}
+                value={form.table_name}
+              />
+            </label>
+          </div>
+          <div className="col">
+            <label htmlFor="capacity" className="row p-3">
+              Capacity:
+              <input
+                id="capacity"
+                type="number"
+                name="capacity"
+                onChange={(e) => handleChange(e, "capacity")}
+                value={form.capacity}
+              />
+            </label>
+          </div>
+        </div>
+        <div className="p-2">
+          <button type="submit" className="btn btn-primary me-2">
+            Submit
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary me-2"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </>
   );
